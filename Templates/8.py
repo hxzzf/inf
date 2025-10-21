@@ -1,11 +1,15 @@
-alphabet = ['','','','','','']
+from itertools import * # Импортируем все из модуля itertools для работы с итераторами
 
-count = 0
-for x1 in alphabet:
-    for x2 in alphabet:
-        for x3 in alphabet:
-            for x4 in alphabet:
-                count += 1
-                st = x1 + x2 + x3 + x4
+alphabet = 'АЛЕЙДОСКП' # Задаем алфавит из букв (!Важно: без повторяющихся букв (обычно) )
+alphabet = list(alphabet)
+alphabet.sort(reverse=True) # Сортировка по алфавиту в обратном порядке
 
-                print(str(count) + '. ' + st)
+cnt = 0
+
+nomer = -1 # Номер комбинации (начинается с 0)
+for perm in product(alphabet, repeat=6): # Перебираем все возможные комбинации букв длиной 6
+    nomer+=1 # Увеличиваем номер комбинации на 1
+    word = ''.join(perm) # Преобразуем кортеж в строку
+    if nomer % 2 == 0 and (word[:1] == 'К') and (word.count('Й') >= 2) and (word.count('С') == 0) and (word.count('Е') == 0):
+        print(nomer)
+        break
