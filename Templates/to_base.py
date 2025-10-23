@@ -1,7 +1,11 @@
+from string import *
+
 def to_base(number, base):
-    base_string = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    if number == 0:
+        return "0"
+
     result = ""
     while number:
-        result += base_string[number % base]
+        result = printable[number % base] + result
         number //= base
-    return result[::-1] or "0"
+    return result.upper()
